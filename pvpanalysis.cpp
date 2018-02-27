@@ -193,16 +193,24 @@ bool PVPAnalysis::compute(
                qi_use = qi;
             }
 
+            QString outfilename =
+               parameters[ "outname" ]
+               + ( parameters.count( "hb" ) ? "_hb" : "" )
+               + ".png";
+
+            
+            if ( !parameters.count( "force" ) &&
+                 QFile::exists( outfilename ) ) {
+               errors += "file '" + outfilename + "' exists. Please remove or use the --force option";
+               return false;
+            }
+
             qi_use
                ->scaled( QSize( parameters[ "size" ].toInt(),
                                 parameters[ "size" ].toInt() ),
                         Qt::KeepAspectRatio )
-               .save(
-                     parameters[ "outname" ]
-                     + ( parameters.count( "hb" ) ? "_hb" : "" )
-                     + ".png",
-                     "PNG"
-                     );
+               .save( outfilename, "PNG" )
+               ;
          }
       }
 
@@ -609,10 +617,7 @@ bool PVPAnalysis::cluster_analysis() {
       plot_cluster->replot();
       plot_cluster->show();
 #endif
-      qDebug() << "ca.run ok";
-
       return true;
    }
-   qDebug() << "ca.run failed:" << ca.errors;
    return false;
 }

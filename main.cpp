@@ -54,10 +54,9 @@ int main( int argc, char *argv[] ) {
                QCoreApplication::translate("main", "Name prefix for the output files (default 'pvpout')."),
                   QCoreApplication::translate("main", "name")
                   }
-         // A boolean option 
          ,{
             {"p", "progress"},
-               QCoreApplication::translate("main", "Display progress dots")
+               QCoreApplication::translate("main", "Display progress updates")
                   }
          ,{
             {"s", "size"},
@@ -83,6 +82,16 @@ int main( int argc, char *argv[] ) {
    QTextStream out( stdout );
 
    map < QString, QString > parameters;
+   if ( !parser.value( "d" ).isEmpty() ) {
+      parameters[ "decimate" ] = parser.value( "d" );
+      out << QString( "decimate is set to %1\n" ).arg( parameters[ "decimate" ] );
+   }
+
+   if ( parser.isSet( "f" ) ) {
+      parameters[ "force" ] = "true";
+      out << "Force overwriting of files\n";
+   }
+
    if ( parser.isSet( "H" ) ) {
       parameters[ "hb" ] = "true";
       out << "Holm Bonferroni adjustment is on\n";
@@ -92,10 +101,12 @@ int main( int argc, char *argv[] ) {
       parameters[ "minq" ] = parser.value( "m" );
       out << QString( "minq is set to %1\n" ).arg( parameters[ "minq" ] );
    }
+
    if ( !parser.value( "M" ).isEmpty() ) {
       parameters[ "maxq" ] = parser.value( "M" );
       out << QString( "maxq is set to %1\n" ).arg( parameters[ "maxq" ] );
    }
+
    if ( !parser.value( "n" ).isEmpty() ) {
       parameters[ "outname" ] = parser.value( "m" );
       out << QString( "name is set to %1\n" ).arg( parameters[ "outname" ] );
@@ -103,9 +114,9 @@ int main( int argc, char *argv[] ) {
       parameters[ "outname" ] = "pvpout";
    }
 
-   if ( !parser.value( "d" ).isEmpty() ) {
-      parameters[ "decimate" ] = parser.value( "d" );
-      out << QString( "decimate is set to %1\n" ).arg( parameters[ "decimate" ] );
+   if ( parser.isSet( "p" ) ) {
+      parameters[ "progress" ] = "true";
+      out << "Progress updates are on\n";
    }
 
    if ( !parser.value( "s" ).isEmpty() ) {
@@ -119,7 +130,6 @@ int main( int argc, char *argv[] ) {
 
    SASFiles sasfiles;
    if ( !sasfiles.load( args ) ) {
-      qDebug() << "sasfiles::load() failed";
       out << sasfiles.errors.join( "\n" ) << "\n";
       out.flush();
       exit(-2);
@@ -140,7 +150,6 @@ int main( int argc, char *argv[] ) {
    out.flush();
 
    if ( !sasfiles.run_pvp( parameters ) ) {
-      qDebug() << "sasfiles::run_pvp() failed";
       out << sasfiles.errors.join( "\n" ) << "\n";
       out.flush();
       exit(-2);

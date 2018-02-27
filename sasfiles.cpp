@@ -3,7 +3,6 @@
 
 bool SASFiles::load( const QStringList & infiles ) {
    // load up the files into I,q,e
-   qDebug() << "sasfiles:load()";
    reset_messages();
 
    files = reorder( infiles );
@@ -326,7 +325,6 @@ public:
 
 
 QStringList SASFiles::reorder( const QStringList &files ) {
-   qDebug() << "sasfiles:reorder()";
    reset_messages();
 
    bool reorder = true;
@@ -483,7 +481,6 @@ QString SASFiles::qstring_common_tail( const QString & s1, const QString & s2 ) 
 // --------- run_pvp --------
 
 bool SASFiles::run_pvp( map < QString, QString > & parameters ) {
-   qDebug() << "sasfiles:run_pvp";
    // build up all pairs
 
    parameters[ "msg" ] = "";
@@ -627,6 +624,11 @@ bool SASFiles::run_pvp( map < QString, QString > & parameters ) {
       q = new_q;
    }
 
+   int compute_count = ( fcount - 1 ) * fcount / 2;
+   int this_compute = 0;
+   bool do_progress = parameters.count( "progress" );
+   QTextStream out( stdout );
+
    for ( int i = 0; i < fcount - 1; ++i ) {
       I[ 0 ] = f_Is[ use_selected_files[ i ] ];
 
@@ -654,8 +656,16 @@ bool SASFiles::run_pvp( map < QString, QString > & parameters ) {
             I[ 1 ] = new_I;
          }
 
+         if ( do_progress ) {
+            if ( !( ++this_compute % 50 ) ) {
+               out << QString( "%1%\r" ).arg( int( 1000 * this_compute / compute_count ) / 10 );
+               out.flush();
+            }
+         }
+
          if ( !pvp.compute( q, I, rkl, N, S, C, P ) ) {
             errors << pvp.errors;
+            return false;
          }
          double adjP = (double) m * P;
          if ( adjP > 1e0 ) {
@@ -679,6 +689,10 @@ bool SASFiles::run_pvp( map < QString, QString > & parameters ) {
             // .arg( adjP ) 
             ;
       }
+   }
+   if ( do_progress ) {
+      out << "\n";
+      out.flush();
    }
 
    {
@@ -736,19 +750,13 @@ bool SASFiles::run_pvp( map < QString, QString > & parameters ) {
             ;
       }
 
-      // US_Hydrodyn_Saxs_Pvp * uhcm = new US_Hydrodyn_Saxs_Pvp( us_hydrodyn,
-      //                                                         parameters,
-      //                                                         pvaluepairs,
-      //                                                         adjpvaluepairs,
-      //                                                         use_selected_files );
-      // if ( parameters.count( "close" ) ) {
-      //    delete uhcm;
-      // } else {
-      //    uhcm->show();
-      // }
-
       PVPAnalysis pvpa;
-      return pvpa.compute( parameters, pvaluepairs, adjpvaluepairs, use_selected_files );
+      if ( !pvpa.compute( parameters, pvaluepairs, adjpvaluepairs, use_selected_files ) ) {
+         errors << pvpa.errors;
+         return false;
+      } else {
+         return true;
+      }
    }
    return false;
 }
