@@ -21,7 +21,7 @@ pvp [options] files
 
 Running without options displays full current options
 
-## example
+## Example
 
 [Using Aldolase test data](http://somo.uthscsa.edu/sampledata.php)
 
