@@ -34,7 +34,7 @@ class SASFiles {
     *
     * loads files into class
     */
-   bool load( const QStringList & files );
+   bool load( const QStringList & files, bool quiet = false );
    
    /** \brief run_pvp
     *

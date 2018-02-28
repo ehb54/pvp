@@ -211,6 +211,7 @@ bool PVPAnalysis::compute(
                         Qt::KeepAspectRatio )
                .save( outfilename, "PNG" )
                ;
+            parameters[ "outfilename" ] = outfilename;
          }
       }
 

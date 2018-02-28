@@ -1,7 +1,7 @@
 #include <sasfiles.h>
 #include <pvpanalysis.h>
 
-bool SASFiles::load( const QStringList & infiles ) {
+bool SASFiles::load( const QStringList & infiles, bool quiet ) {
    // load up the files into I,q,e
    reset_messages();
 
@@ -21,15 +21,19 @@ bool SASFiles::load( const QStringList & infiles ) {
    
       for ( int i = 0; i < (int) files.size(); ++i ) {
          any_errors |= !read_one_file( files[ i ] );
-         out << files[ i ] << "\n";
-         out.flush();
+         if ( !quiet ) {
+            out << files[ i ] << "\n";
+            out.flush();
+         }
       }
 
       if ( any_errors ) {
          return false;
       }
-      out << QString( "%1 files loaded\n" ).arg( files.size() );
-      out.flush();
+      if ( !quiet ) {
+         out << QString( "%1 files loaded\n" ).arg( files.size() );
+         out.flush();
+      }
    }
 
    return true;
