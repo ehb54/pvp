@@ -301,10 +301,16 @@ int main( int argc, char *argv[] ) {
    if ( parameters.count( "report" ) ) {
       if ( is_json ) {
          results[ "results" ] = parameters[ "report" ];
+         if ( parameters.count( "msg" ) ) {
+            results[ "msg" ] = parameters[ "msg" ];
+         }
          QJsonDocument results_doc( QJsonObject::fromVariantMap( results ) );
          out << results_doc.toJson( QJsonDocument::Compact );
       } else {
          out << parameters[ "report" ];
+         if ( parameters.count( "msg" ) ) {
+            out << parameters[ "msg" ];
+         }
       }
    } else {
       if ( is_json ) {
