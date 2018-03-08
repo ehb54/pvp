@@ -69,6 +69,54 @@ Red cluster maximum size 27 (60.0%) has 1 occurrence and begins at [1,8].
     8 : aldo_pH7p5_Elution1_0022_7     0.003335        1.22e-07        100.0%
     9 : aldo_pH7p5_Elution1_0022_8     0.006988        1.645e-05        77.8%
    10 : aldo_pH7p5_Elution1_0022_9     0.01379         0.001098         66.7%
+
+File                            File                                N  Start point  C   P-value
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_1         158     112      12  0.01793
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_2         158      38      14  0.004448
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_3         158      82      17  0.0005454
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_4         158      39      12  0.01793
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_5         158      58      11  0.03582
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_6         158      12       9  0.1383
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_7         158      96      14  0.004448
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_8         158      96      14  0.004448
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_9         158      95      13  0.008939
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_2         158      34      18  0.0002708
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_3         158      53       9  0.1383
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_4         158     111       9  0.1383
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_5         158     107      12  0.01793
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_6         158      48      17  0.0005454
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_7         158     109      15  0.002211
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_8         158     107      12  0.01793
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_9         158       3      11  0.03582
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_3         158      90      12  0.01793
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_4         158      20      13  0.008939
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_5         158      35      17  0.0005454
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_6         158     131      15  0.002211
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_7         158       2      29  1.22e-07
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_8         158       1      22  1.645e-05
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_9         158       3      16  0.001098
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_4         158      89      13  0.008939
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_5         158      63      15  0.002211
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_6         158      64      14  0.004448
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_7         158     110      14  0.004448
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_8         158     125      12  0.01793
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_9         158      86      12  0.01793
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_5         158      12      10  0.07096
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_6         158      16      11  0.03582
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_7         158       9      13  0.008939
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_8         158       9      13  0.008939
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_9         158      89      13  0.008939
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_6         158      42      28  2.459e-07
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_7         158       7      14  0.004448
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_8         158      28      15  0.002211
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_9         158      93      11  0.03582
+aldo_pH7p5_Elution1_0022_6      aldo_pH7p5_Elution1_0022_7         158       9      16  0.001098
+aldo_pH7p5_Elution1_0022_6      aldo_pH7p5_Elution1_0022_8         158     107      18  0.0002708
+aldo_pH7p5_Elution1_0022_6      aldo_pH7p5_Elution1_0022_9         158      70      14  0.004448
+aldo_pH7p5_Elution1_0022_7      aldo_pH7p5_Elution1_0022_8         158     110      15  0.002211
+aldo_pH7p5_Elution1_0022_7      aldo_pH7p5_Elution1_0022_9         158      67      15  0.002211
+aldo_pH7p5_Elution1_0022_8      aldo_pH7p5_Elution1_0022_9         158      28      13  0.008939
+
 ```
 & in pvpout.png: ![Image of pvpout.png](doc/sample-pvpout.png)
 
