@@ -183,36 +183,36 @@ bool PVPAnalysis::compute(
                }
             }
          }
+      }
    
-         if ( parameters.count( "size" ) &&
-              parameters.count( "outname" ) ) {
-            QImage *qi_use;
-            if ( parameters.count( "hb" ) ) {
-               qi_use = qi_hb;
-            } else {
-               qi_use = qi;
-            }
+      if ( parameters.count( "size" ) &&
+           parameters.count( "outname" ) ) {
+         QImage *qi_use;
+         if ( parameters.count( "hb" ) ) {
+            qi_use = qi_hb;
+         } else {
+            qi_use = qi;
+         }
 
-            QString outfilename =
-               parameters[ "outname" ]
-               + ( parameters.count( "hb" ) ? "_hb" : "" )
-               + ".png";
+         QString outfilename =
+            parameters[ "outname" ]
+            + ( parameters.count( "hb" ) ? "_hb" : "" )
+            + ".png";
 
             
-            if ( !parameters.count( "force" ) &&
-                 QFile::exists( outfilename ) ) {
-               errors += "file '" + outfilename + "' exists. Please remove or use the --force option";
-               return false;
-            }
-
-            qi_use
-               ->scaled( QSize( parameters[ "size" ].toInt(),
-                                parameters[ "size" ].toInt() ),
-                        Qt::KeepAspectRatio )
-               .save( outfilename, "PNG" )
-               ;
-            parameters[ "outfilename" ] = outfilename;
+         if ( !parameters.count( "force" ) &&
+              QFile::exists( outfilename ) ) {
+            errors += "file '" + outfilename + "' exists. Please remove or use the --force option";
+            return false;
          }
+
+         qi_use
+            ->scaled( QSize( parameters[ "size" ].toInt(),
+                             parameters[ "size" ].toInt() ),
+                      Qt::KeepAspectRatio )
+            .save( outfilename, "PNG" )
+            ;
+         parameters[ "outfilename" ] = outfilename;
       }
 
       double tot_c_pct     =  100e0 / (double) ( green_c + yellow_c + red_c );
