@@ -5,15 +5,16 @@ This is a command line version of [US-SOMO](http://somo.uthscsa.edu)'s [CorMap](
 
 Slides briefly introducing the concept are [here](https://github.com/ehb54/pvp/wiki)
 
-## Dependencies
-
-[Qt5](https://www.qt.io/) development tools
-
 ## Precompiled versions
 
 Precompiled versions are [here](https://github.com/ehb54/pvp/tree/master/precompiled)
 
-## Compile
+## Compile from source
+### Dependencies
+
+[Qt5](https://www.qt.io/) development tools
+
+### Compile
 
 ```
 qmake
