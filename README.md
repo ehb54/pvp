@@ -9,6 +9,10 @@ Slides briefly introducing the concept are [here](https://github.com/ehb54/pvp/w
 
 [Qt5](https://www.qt.io/) development tools
 
+## Precompiled versions
+
+Precompiled versions are [here](https://github.com/ehb54/pvp/tree/master/precompiled)
+
 ## Compile
 
 ```
