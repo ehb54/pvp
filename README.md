@@ -28,6 +28,14 @@ pvp [options] files
 
 Running without options displays full current options
 
+## Data format
+
+Only text format .dat, .int and .txt files are accepted for input.
+
+The required data file format consists of rows of whitespace (spaces, TABs) separated columns containing typically first the q-value and then the I(q).  The q-values should be the same for each file. Extra columns of data should be ok.  Note that errors are not used when computing p-values.
+
+To enable automatic ordering by frame number, each frame number (or time value) must be present somewhere in the filename with a common prefix and suffix. For example, data1saxs.dat, data2saxs.dat, data3saxs.dat will be recognized as frames 1,2,3, where "data" and "saxs" can be replaced by any common sequence of characters. Consequently, 1.dat, 2.dat, 3.dat would be acceptable, but abc1.dat, qrs2.dat, xyz3.dat would not, because the prefix characters are not common. 
+
 ## Example
 
 [Using Aldolase test data](http://somo.uthscsa.edu/sampledata.php)
