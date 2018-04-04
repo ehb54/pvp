@@ -38,7 +38,7 @@ To enable automatic ordering by frame number, each frame number (or time value) 
 
 ## Example
 
-[Using Aldolase test data](http://somo.uthscsa.edu/sampledata.php)
+Using test data [available here](example-data). Additional reference data is available [here](http://somo.uthscsa.edu/sampledata.php).
 
 ```
 $ pvp -m 0.01 -M 0.1 ../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_?.dat
