@@ -30,7 +30,7 @@ Running without options displays full current options
 
 ## Data format
 
-Only text format .dat, .int and .txt files are accepted for input.
+Only text format files with extensions .dat, .int, .ssaxs, or .txt are accepted for input.
 
 The required data file format consists of rows of whitespace (spaces, TABs) separated columns containing typically first the q-value and then the I(q).  The q-values should be the same for each file. Extra columns of data should be ok.  Note that errors are not used when computing p-values.
 
