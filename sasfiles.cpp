@@ -57,6 +57,8 @@ bool SASFiles::read_one_file( const QString & filename ) {
                          "int|"
                          "txt|"
                          "csv|"
+                         "iq|"
+                         "ciq|"
                          // "out|"
                          "ssaxs)$" );
 
