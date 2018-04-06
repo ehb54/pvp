@@ -223,6 +223,11 @@ bool SASFiles::read_one_file( const QString & filename ) {
 
    QRegExp rx_ok_line("^(\\s+(-|)|\\d+|\\.|\\d(E|e)(\\+|-|\\d))+$");
    rx_ok_line.setMinimal( true );
+
+   if ( rx_ok_line.indexIn( qv[0] ) != -1 ) {
+         row_offset = 0;
+   }
+
    for ( int i = row_offset; i < (int) qv.size(); i++ ) {
       if ( qv[i].contains(QRegExp("^#")) ||
            rx_ok_line.indexIn( qv[i] ) == -1 ) {

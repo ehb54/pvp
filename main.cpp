@@ -5,9 +5,28 @@
 
 int main( int argc, char *argv[] ) {
 
+#if defined(Q_OS_WIN) && !defined(Q_OS_WINRT)
+   // kludge for https://bugreports.qt.io/browse/QTBUG-67515
+   # define QTBUG_67515
+#endif
+
+#if defined( QTBUG_67515 )
+   char **margv = new char*[ argc + 2 ];
+   for ( int i = 0; i < argc; ++i ) {
+      margv[ i ] = new char[ strlen( argv[ i ] ) + 1 ];
+      strcpy( margv[ i ], argv[ i ] );
+   }
+   margv[ argc ] = new char[ strlen( "remove" ) + 1 ];
+   strcpy( margv[ argc ], "remove" );
+   margv[ argc + 1 ] = NULL;
+   argc++;
+   QCoreApplication app( argc, margv );
+#else
    QCoreApplication app( argc, argv );
+#endif
+
    QCoreApplication::setApplicationName("PVP");
-   QCoreApplication::setApplicationVersion("0.2");
+   QCoreApplication::setApplicationVersion("0.3");
 
    QCommandLineParser parser;
    parser.setApplicationDescription(
@@ -30,7 +49,6 @@ int main( int argc, char *argv[] ) {
                QCoreApplication::translate("main", "Overwrite existing files.")
                   }
       });
-   
 
    parser.addHelpOption();
 
@@ -76,9 +94,19 @@ int main( int argc, char *argv[] ) {
       parser.showHelp(-1);
    };
 
+#if defined( QTBUG_67515 )
+   if ( argc == 2 ) {
+      parser.showHelp(-1);
+   };
+#endif
+
    parser.process(app);
 
    QStringList args = parser.positionalArguments();
+
+#if defined( QTBUG_67515 )
+   args.removeLast();
+#endif
 
    QTextStream out( stdout );
    map < QString, QString > parameters =
@@ -87,7 +115,6 @@ int main( int argc, char *argv[] ) {
          ,{ "outname" , "pvpout" }
       }
    ;
-
 
    bool is_json = false;
    QVariantMap results;
