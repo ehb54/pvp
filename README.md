@@ -1,7 +1,7 @@
 # pvp
 ## Pairwise P Value utility
 
-This is a command line version of [US-SOMO](http://somo.uthscsa.edu)'s [CorMap](http://somo.uthscsa.edu/manual/cormap.html) facility.
+This is a command line version of [US-SOMO](http://somo.uthscsa.edu)'s [PVP Analysis](http://somo.uthscsa.edu/manual/cormap.html) facility.
 
 Slides briefly introducing the concept are [here](https://github.com/ehb54/pvp/wiki)
 
