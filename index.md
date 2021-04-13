@@ -133,5 +133,5 @@ aldo_pH7p5_Elution1_0022_7      aldo_pH7p5_Elution1_0022_9         158      67  
 aldo_pH7p5_Elution1_0022_8      aldo_pH7p5_Elution1_0022_9         158      28      13  0.008939
 
 ```
-& in pvpout.png: ![Image of pvpout.png](doc/sample-pvpout.png)
+& in pvpout.png: ![Image of pvpout.png](https://raw.githubusercontent.com/ehb54/pvp/master/doc/sample-pvpout.png)
 
