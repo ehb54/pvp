@@ -1,37 +1,137 @@
-## Welcome to GitHub Pages
+# pvp
+## Pairwise P Value utility
 
-You can use the [editor on GitHub](https://github.com/ehb54/pvp/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This is a command line version of [US-SOMO](http://somo.uthscsa.edu)'s [PVP Analysis](http://somo.uthscsa.edu/manual/cormap.html) facility.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Slides briefly introducing the concept are [here](https://github.com/ehb54/pvp/wiki)
 
-### Markdown
+## Precompiled versions
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Precompiled versions are [here](https://github.com/ehb54/pvp/tree/master/precompiled)
 
-```markdown
-Syntax highlighted code block
+## Compile from source
+### Dependencies
 
-# Header 1
-## Header 2
-### Header 3
+[Qt5](https://www.qt.io/) development tools
 
-- Bulleted
-- List
+### Compile
 
-1. Numbered
-2. List
+```
+qmake
+make
+```
+## Run
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+pvp [options] files
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Running without options displays full current options
 
-### Jekyll Themes
+## Data format
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/ehb54/pvp/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Only text format files with extensions .dat, .int, .iq, .ciq, .ssaxs, or .txt are accepted for input.
 
-### Support or Contact
+The required data file format consists of rows of whitespace (spaces, TABs) separated columns containing typically first the q-value and then the I(q).  The q-values should be the same for each file. At most 3 columns of data can be provided.  Note that errors are not used when computing p-values.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+To enable automatic ordering by frame number, each frame number (or time value) must be present somewhere in the filename with a common prefix and suffix. For example, data1saxs.dat, data2saxs.dat, data3saxs.dat will be recognized as frames 1,2,3, where "data" and "saxs" can be replaced by any common sequence of characters. Consequently, 1.dat, 2.dat, 3.dat would be acceptable, but abc1.dat, qrs2.dat, xyz3.dat would not, because the prefix characters are not common. 
+
+## Example
+
+Using test data [available here](example-data). Additional reference data is available [here](http://somo.uthscsa.edu/sampledata.php).
+
+```
+$ pvp -m 0.01 -M 0.1 ../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_?.dat
+minq is set to 0.01
+maxq is set to 0.1
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_0.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_1.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_2.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_3.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_4.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_5.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_6.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_7.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_8.dat
+../testdata/Aldolase_25_11_SOMO/aldo_pH7p5_Elution1_0022_9.dat
+10 files loaded
+
+Alpha is 0.01
+
+Pairwise P value map color definitions:
+  P is the pairwise P value as determined by a CorMap analysis
+  Green corresponds to         P >= 0.05
+  Yellow corresponds to 0.05 > P >= 0.01
+  Red corresponds to    0.01 > P
+Axes ticks correspond to Ref. as listed below
+
+P values:
+  33.3% green (8.9%) + yellow (24.4%) pairs
+  66.7% red pairs
+
+Average one-to-all P value 0.01924 ±0.01261 (65.5%) % red 66.7% ±19.6 (29.4%)
+Red cluster count 2, average size 15.00 ±0.00 (0.0%), average size as pct of total area 33.3% ±0.0
+Red cluster maximum size 27 (60.0%) has 1 occurrence and begins at [1,8].
+
+ Ref. : Name                         Avg. P value    Min. P Value      % Red
+    1 : aldo_pH7p5_Elution1_0022_0     0.02586         0.0005454        55.6%
+    2 : aldo_pH7p5_Elution1_0022_1     0.04102         0.0002708        33.3%
+    3 : aldo_pH7p5_Elution1_0022_2     0.00394         1.22e-07         88.9%
+    4 : aldo_pH7p5_Elution1_0022_3     0.02363         0.0005454        55.6%
+    5 : aldo_pH7p5_Elution1_0022_4     0.03419         0.008939         55.6%
+    6 : aldo_pH7p5_Elution1_0022_5     0.01888         2.459e-07        55.6%
+    7 : aldo_pH7p5_Elution1_0022_6     0.02079         2.459e-07        77.8%
+    8 : aldo_pH7p5_Elution1_0022_7     0.003335        1.22e-07        100.0%
+    9 : aldo_pH7p5_Elution1_0022_8     0.006988        1.645e-05        77.8%
+   10 : aldo_pH7p5_Elution1_0022_9     0.01379         0.001098         66.7%
+
+File                            File                                N  Start point  C   P-value
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_1         158     112      12  0.01793
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_2         158      38      14  0.004448
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_3         158      82      17  0.0005454
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_4         158      39      12  0.01793
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_5         158      58      11  0.03582
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_6         158      12       9  0.1383
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_7         158      96      14  0.004448
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_8         158      96      14  0.004448
+aldo_pH7p5_Elution1_0022_0      aldo_pH7p5_Elution1_0022_9         158      95      13  0.008939
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_2         158      34      18  0.0002708
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_3         158      53       9  0.1383
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_4         158     111       9  0.1383
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_5         158     107      12  0.01793
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_6         158      48      17  0.0005454
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_7         158     109      15  0.002211
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_8         158     107      12  0.01793
+aldo_pH7p5_Elution1_0022_1      aldo_pH7p5_Elution1_0022_9         158       3      11  0.03582
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_3         158      90      12  0.01793
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_4         158      20      13  0.008939
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_5         158      35      17  0.0005454
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_6         158     131      15  0.002211
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_7         158       2      29  1.22e-07
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_8         158       1      22  1.645e-05
+aldo_pH7p5_Elution1_0022_2      aldo_pH7p5_Elution1_0022_9         158       3      16  0.001098
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_4         158      89      13  0.008939
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_5         158      63      15  0.002211
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_6         158      64      14  0.004448
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_7         158     110      14  0.004448
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_8         158     125      12  0.01793
+aldo_pH7p5_Elution1_0022_3      aldo_pH7p5_Elution1_0022_9         158      86      12  0.01793
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_5         158      12      10  0.07096
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_6         158      16      11  0.03582
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_7         158       9      13  0.008939
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_8         158       9      13  0.008939
+aldo_pH7p5_Elution1_0022_4      aldo_pH7p5_Elution1_0022_9         158      89      13  0.008939
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_6         158      42      28  2.459e-07
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_7         158       7      14  0.004448
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_8         158      28      15  0.002211
+aldo_pH7p5_Elution1_0022_5      aldo_pH7p5_Elution1_0022_9         158      93      11  0.03582
+aldo_pH7p5_Elution1_0022_6      aldo_pH7p5_Elution1_0022_7         158       9      16  0.001098
+aldo_pH7p5_Elution1_0022_6      aldo_pH7p5_Elution1_0022_8         158     107      18  0.0002708
+aldo_pH7p5_Elution1_0022_6      aldo_pH7p5_Elution1_0022_9         158      70      14  0.004448
+aldo_pH7p5_Elution1_0022_7      aldo_pH7p5_Elution1_0022_8         158     110      15  0.002211
+aldo_pH7p5_Elution1_0022_7      aldo_pH7p5_Elution1_0022_9         158      67      15  0.002211
+aldo_pH7p5_Elution1_0022_8      aldo_pH7p5_Elution1_0022_9         158      28      13  0.008939
+
+```
+& in pvpout.png: ![Image of pvpout.png](doc/sample-pvpout.png)
+
