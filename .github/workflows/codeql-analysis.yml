@@ -54,6 +54,7 @@ jobs:
     # If this step fails, then you should remove it and run the build manually (see below)
     #- name: Autobuild
     #  uses: github/codeql-action/autobuild@v1
+      
     - run: |
       qmake
       make
