@@ -55,10 +55,6 @@ jobs:
     #- name: Autobuild
     #  uses: github/codeql-action/autobuild@v1
       
-    - run: |
-      qmake
-      make
-
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
 
@@ -66,9 +62,9 @@ jobs:
     #    and modify them (or add more) to build your code if your project
     #    uses a compiled language
 
-    #- run: |
-    #   make bootstrap
-    #   make release
+    - run: |
+       qmake
+       make
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
