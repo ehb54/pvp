@@ -46,6 +46,9 @@ jobs:
           languages: ${{ matrix.language }}
       - name: Build
         run: |
+          echo $PLATFORM
+          echo $LIB
+          ls -l /__t/CodeQL/0.0.0-20211122/x64/codeql/tools/linux64/
           qmake
           make
       - name: Perform CodeQL Analysis
