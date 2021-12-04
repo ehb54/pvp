@@ -20,6 +20,10 @@ on:
   schedule:
     - cron: '20 18 * * 1'
 
+env:
+  LIB: lib64
+  PLATFORM: x86_64
+
 jobs:
   analyze:
     name: Analyze
