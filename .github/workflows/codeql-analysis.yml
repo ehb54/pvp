@@ -49,6 +49,7 @@ jobs:
           echo $PLATFORM
           echo $LIB
           ls -l /__t/CodeQL/0.0.0-20211122/x64/codeql/tools/linux64/
+          ldd /__t/CodeQL/0.0.0-20211122/x64/codeql/tools/linux64/lib_x86_64_trace.so
           qmake
           make
       - name: Perform CodeQL Analysis
