@@ -26,6 +26,9 @@ env:
 
 jobs:
   analyze:
+    env:
+      LIB: lib64
+      PLATFORM: x86_64
     name: Analyze
     runs-on: ubuntu-latest
     permissions:
